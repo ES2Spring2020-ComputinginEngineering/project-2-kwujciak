@@ -55,10 +55,8 @@ def assign_data(cent_array, k):
       distance = np.zeros((len(glucose),k))
       for i in range(k):
           cent_point_dist = np.array(np.sqrt(((glucose_scaled-cent_array[i,0])**2)+(hemoglobin_scaled-cent_array[i,1])**2))
-#          print(cent_point_dist)
           distance[:,i] = cent_point_dist
       assign_array = np.argmin(distance, axis = 1)
-#      print(assign_array)
       return assign_array
   
 def update_data(assign_array, k):
@@ -78,7 +76,6 @@ def update_data(assign_array, k):
           avg_array[i,0] = glucose_avg
           avg_array[i,1] = hemoglobin_avg
           new_cent = avg_array
-#      print(new_cent)
       return new_cent
 
 def iterate_data(k, max_it):
@@ -92,7 +89,6 @@ def iterate_data(k, max_it):
     iteration = 0
     new_cent = amount_k(k)
     while max_it != iteration:
-#        print(new_cent)
         assign_array = assign_data(new_cent, k)
         new_cent = update_data(assign_array, k)
         max_it = max_it -1
